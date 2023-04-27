@@ -45,7 +45,7 @@ void print_array_elmt(int elmt)
 
 int part(int *array, int l, int r, size_t size)
 {
-	int pivot_index, imp, tmr, tmpr, swap, i;
+	int pivot_index, imp, tm, tmpr, swap, i;
 	size_t j;
 	/*int size = sizeof(array) / sizeof(int);*/
 
@@ -75,7 +75,7 @@ int part(int *array, int l, int r, size_t size)
 	}
 	tmr = array[swap + 1];
 	array[swap + 1] = array[pivot_index];
-	array[pivot_index] = tmr;
+	array[pivot_index] = tm;
 	return (swap + 1);
 }
 
