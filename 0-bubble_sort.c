@@ -1,46 +1,83 @@
 #include "sort.h"
 
 /**
- * swap_ints - Swap two integers in an array.
- * @a: The first integer to swap.
- * @b: The second integer to swap.
+ * print_array_elmt - This funtion serves as the putchar for this project
+ *
+ * @elmt: function parameter
+ * Returns: void function
  */
-void swap_ints(int *s, int *f)
-{
-	int tmp;
 
-	tmp = *s;
-	*s = *f;
-	*f = tmp;
+void print_array_elmt(int elmt)
+{
+	int numDigit = 0;
+	int divider = 1;
+	int digits;
+
+	if (elmt == 0)
+	{
+		putchar('0');
+		return;
+	}
+
+	while (elmt / divider != 0)
+	{
+		numDigit++;
+		divider *= 10;
+	}
+
+	divider /= 10;
+	while (divider != 0)
+	{
+		digits = elmt / divider;
+		putchar(digits + '0');
+		elmt -= digits * divider;
+		divider /= 10;
+	}
 }
 
+
 /**
- * bubble_sort - Sort an array of integers in ascending order.
- * @array: An array of integers to sort.
- * @size: The size of the array.
+ * bubble_sort - This function sorts an array of size 'size'
+ * in ascending order
  *
- * Description: Prints the array after each swap.
+ * @array: An array to be sorted
+ * @size: size of the array
+ * Return: void function
  */
+
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, len = size;
-	bool bubble = false;
+	int tmp;
+	size_t a, b, c;
 
-	if (array == NULL || size < 2)
-		return;
-
-	while (bubble == false)
+	if (size < 2)
 	{
-		bubble = true;
-		for (a = 0; a < len - 1; a++)
+		return;
+	}
+	else
+	{
+
+	for (a = 0; a < size - 1; a++)
+	{
+		for (b = 0; b < size - a - 1; b++)
 		{
-			if (array[a] > array[a + 1])
+			if (array[b] > array[b + 1])
 			{
-				swap_ints(array + a, array + a + 1);
-				print_array(array, size);
-				bubble = false;
+				tmp = array[b];
+				array[b] = array[b + 1];
+				array[b + 1] = tmp;
+				for (c = 0; c < size; c++)
+				{
+					print_array_elmt(array[c]);
+					if (c != size - 1)
+					{
+						putchar(',');
+						putchar(' ');
+					}
+				}
+				putchar('\n');
 			}
 		}
-		len--;
 	}
+}
 }
